@@ -1,0 +1,355 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard 1.0</title>
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="static/css/dashboard.css" th:href="@{/css/dashboard.css}">
+</head>
+<body>
+	<script language="JavaScript" type="text/javascript">
+		function ShowHideWdn(windwsId){
+			if ("wdwUserProfile" != windwsId) document.getElementById("wdwUserProfile").style.display="none";
+			if ("wdwNewOrder" != windwsId) document.getElementById("wdwNewOrder").style.display="none";
+			if ("wdwOrders" != windwsId) document.getElementById("wdwOrders").style.display="none";
+			if ("wdwHistorial" != windwsId) document.getElementById("wdwHistorial").style.display="none";
+			if ("wdwHelp" != windwsId) document.getElementById("wdwHelp").style.display="none";
+			if ("wdwCV" != windwsId) document.getElementById("wdwCV").style.display="none";
+			var x =	document.getElementById(windwsId);
+			if (x.style.display=="none"){
+				x.style.display = "block";
+			}
+			else{
+				x.style.display = "none";
+			}
+		}
+	</script>
+
+	<script lenguage="JavaScript" type="text/javascript" >
+		function FilterTable(){
+			var edit = document.getElementById("filterInput").val().toLowerCase();
+			var table = document.getElementById("ordersTable tr");
+			table.filter(function(){
+				toggle(text().toLowerCase().indexOf(edit)>-1);
+			});
+		}		
+	</script >
+	
+	<h6 style="position: absolute; left: 1px; top: 1px;">Created by Sebastian Liotta</h6>		
+	<div class="container" style="position: relative;">
+		<div class="d-flex justify-content-center h-100">
+			<div class="sideBar">
+				<div class="input-group">
+					<img class="avatar" src="static/imagenes/user.png" th:src="@{/imagenes/user.png}">
+				</div>
+				<div class="input-group">
+					<h3 class="usrName" th:text = "${User.userName}"></h3>
+				</div>
+				<div class="input-group">
+					<h6 class="usrMail" th:text = "${User.mail}"></h6>	
+				</div>
+				<div class="btns">
+					<br>
+					<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowHideWdn('wdwUserProfile')">Profile</button>
+					<br>
+					<br>
+					<button type="button" class="btn btn-warning btn-lg btn-block" onclick="ShowHideWdn('wdwNewOrder')">New Order</button>
+					<button type="button" class="btn btn-warning btn-lg btn-block" onclick="ShowHideWdn('wdwOrders')">Orders</button>
+					<button type="button" class="btn btn-warning btn-lg btn-block" onclick="ShowHideWdn('wdwHistorial')">Historial</button>
+					<button type="button" class="btn btn-warning btn-lg btn-block" onclick="ShowHideWdn('wdwHelp')">Help</button>
+					<button type="button" class="btn btn-warning btn-lg btn-block" onclick="ShowHideWdn('wdwCV')">Curriculum Vitae</button>
+				</div>	
+			</div>
+			<div class="mainContainer container">
+				<!-- Start UserProfile Window -->
+				<div class="UserProfileWdw " id="wdwUserProfile" style="display: none;"> 
+					<div class="userProfileImage input-group" >
+						<div>
+							<img class="userProfilAvatar border border-warning " src="static/imagenes/user.png" th:src="@{/imagenes/user.png}">
+						</div>
+						<div class="avatar-spec">
+							<button type="button" class="btn-change btn btn-warning">Change</button>
+							<button type="button" class="btn-change btn btn-warning">Change Pass</button>
+							<p><h4 class="labelAvatar">Image Specifications</h4></p>
+							<p><h6 class="labelAvatar">name: User.png</h6></p>
+							<p><h6 class="labelAvatar">width: 250px</h6></p>
+							<p><h6 class="labelAvatar">height: 280px</h6></p>
+						</div>
+					</div>
+					<div class="container userProfileForm">
+	  					<form action="Dashboar_submit" method="get" accept-charset="utf-8">
+		  					<div class="row">
+		    					<div class="col">
+									<label class="labelAvatar" for="exampleInputPassword1">User Name</label>
+	    							<input type="text" class="form-control input-up-name" id="exampleInputPassword1" placeholder="Nick Name">							
+		    					</div>
+		    					<div class="col">
+									<label class="labelAvatar" for="exampleInputPassword1">Mail</label>
+	    							<input type="text" class="form-control" id="exampleInputPassword1" placeholder="user@gmail.com">							
+		    					</div>
+		  					</div>
+		  					<div class="row usrProfileRow">
+		    					<div class="col">
+									<label class="labelAvatar" for="exampleInputPassword1">Your Name</label>
+	    							<input type="text" class="form-control input-up-name" id="exampleInputPassword1" placeholder="Name">							
+		    					</div>
+		    					<div class="col">
+									<label class="labelAvatar" for="exampleInputPassword1">Your LastName</label>
+	    							<input type="text" class="form-control" id="exampleInputPassword1" placeholder="Last Name">							
+		    					</div>
+		  					</div>
+		  					<div class="row usrProfileRow">
+		    					<div class="col">
+									<label class="labelAvatar" for="exampleInputPassword1">Your Address</label>
+	    							<input type="text" class="form-control input-up-name" id="exampleInputPassword1" placeholder="Address">							
+		    					</div>
+		  					</div>
+		  					<div class="row btnsForm usrProfileRowBtn input-group">
+								<div class="col ">
+									<button type="button" class="btn-change btn btn-danger">Cancel</button>
+									<button type="button" class="btn-change btn btn-success">Acept</button>
+								</div>
+		  					</div>
+	  					</form>
+					</div> 
+				</div><!-- End UserProfile Window -->
+				<!-- Start NewOrder Window -->
+				<div class="NewOrderWdw " id="wdwNewOrder" style="display: none;">
+					<div class="tableContainer table-wrapper-scroll-y my-custom-scrollbar">
+						<table class="table  table-striped">
+  							<thead class="bg-warning">
+	    						<tr>
+	      							<th class="headTable" scope="col">Product Code</th>
+	      							<th class="headTable" scope="col">Descriopcion</th>
+	      							<th class="headTable" scope="col">Price $</th>
+	      							<th class="headTable" scope="col">Cantidad</th>
+	    						</tr>
+	    					</thead>
+	    					<tbody>
+	    						<tr>
+		    						<th scope="row">1001</th>
+      								<td class="table-light">Chopp de Cerveza Artesanal</td>
+      								<td>$ 250,00</td>	    							
+      								<td> <input type="number" value="0" min="0" max="99" step="1"/> </td>
+	    						</tr>
+	    						<tr>
+		    						<th scope="row">1002</th>
+      								<td>Pizza Muzzarella</td>
+      								<td>$ 620,00</td>	    							
+      								<td> <input type="number" value="0" min="0" max="99" step="1"/> </td>
+	    						</tr>
+	    						<tr>
+		    						<th scope="row">1003</th>
+      								<td>Hamburguesa con queso</td>
+      								<td>$ 450,00</td>	    							
+      								<td> <input type="number" value="0" min="0" max="99" step="1"/> </td>
+	    						</tr>
+	    						<tr>
+		    						<th scope="row">1004</th>
+      								<td>Porcion de Papas Fritas</td>
+      								<td>$ 300,00</td>	    							
+      								<td> <input type="number" value="0" min="0" max="99" step="1"/> </td>
+	    						</tr>
+	    						<tr>
+		    						<th scope="row">1005</th>
+      								<td>Vino Espumante Blanco x 1L</td>
+      								<td>$ 650,00</td>	    							
+      								<td> <input type="number" value="0" min="0" max="99" step="1"/> </td>
+	    						</tr>
+	    						<tr>
+		    						<th scope="row">1006</th>
+      								<td>Tragos</td>
+      								<td>$ 320,00</td>	    							
+      								<td> <input type="number" value="0" min="0" max="99" step="1"/> </td>
+	    						</tr>
+	    						<tr>
+		    						<th scope="row">1007</th>
+      								<td>Picada de Fiambres para 2</td>
+      								<td>$ 700,00</td>	    							
+      								<td> <input type="number" value="0" min="0" max="99" step="1"/> </td>
+	    						</tr>
+	    						<tr>
+		    						<th scope="row">1008</th>
+      								<td>Chopp de Cerveza Artesanal</td>
+      								<td>$ 250,00</td>	    							
+      								<td> <input type="number" value="0" min="0" max="99" step="1"/> </td>
+	    						</tr>
+	    					</tbody>
+	    				</table>
+    				</div>
+    				<div>
+						<div class="col ">
+							<button type="button" class="btn-change btn btn-info" style="margin-right: 255px;">Clear</button>
+							<button type="button" class="btn-change btn btn-danger">Cancel</button>
+							<button type="button" class="btn-change btn btn-success">Create Order</button>
+						</div>    					
+    				</div>
+				</div> <!-- End NewOrder Window -->
+				<!-- Start Orders Window -->
+				<div class="OrdersWdw " id="wdwOrders" style="display: none;">
+					<div>
+						<input class="form-control" id="filterInput" type="text" placeholder="Search.." onkeyup="FilterTable()">
+						<br>
+  					</div>
+					<div class="tableContainer table-wrapper-scroll-y my-custom-scrollbar">
+						<table id="ordersTable" class="table table-striped">
+  							<thead class="bg-warning">
+	    						<tr>
+	      							<th class="headTable" scope="col">Order Number</th>
+	      							<th class="headTable" scope="col">Order Tag</th>
+	      							<th class="headTable" scope="col">Product Code</th>
+	      							<th class="headTable" scope="col">Description</th>
+	      							<th class="headTable" scope="col">Unit Price</th>
+	      							<th class="headTable" scope="col">Cantidad</th>
+	      							<th class="headTable" scope="col">Sub Total</th>
+	    						</tr>
+	    					</thead>
+	    					<tbody>
+	    						<tr>
+	    							<td>2001</td>
+	    							<td>Order 1</td>
+	    							<td>1001</td>
+	    							<td>AAAAA</td>
+	    							<td>$ 11,00</td>
+	    							<td>5</td>
+	    							<td>$ 55,00</td>
+	    						</tr>
+	    						<tr>
+	    							<td>2002</td>
+	    							<td>Order 2</td>
+	    							<td>1001</td>
+	    							<td>AAAAA</td>
+	    							<td>$ 11,00</td>
+	    							<td>5</td>
+	    							<td>$ 55,00</td>
+	    						</tr>
+	    					</tbody>
+	    				</table>
+    				</div>
+    				<div>
+						<div class="col ">
+							<button type="button" class="btn-change btn btn-warning" style="margin-left: 300px;">Close</button>
+						</div>    					
+    				</div>				
+    			</div> <!-- End Orders Window -->
+				<!-- Start Historial Window -->
+				<div class="HistorialWdw " id="wdwHistorial" style="display: none;">
+					<div>
+						<input class="form-control" id="filterInput" type="text" placeholder="Search.." onkeyup="FilterTable()">
+						<br>
+  					</div>
+					<div class="tableContainer table-wrapper-scroll-y my-custom-scrollbar">
+						<table id="ordersTable" class="table table-striped">
+  							<thead class="bg-warning">
+	    						<tr>
+	      							<th class="headTable" scope="col">Order Number</th>
+	      							<th class="headTable" scope="col">Order Date</th>
+	      							<th class="headTable" scope="col">Order Tag</th>
+	      							<th class="headTable" scope="col">Total</th>
+	      							<th class="headTable" scope="col">State</th>
+	    						</tr>
+	    					</thead>
+	    					<tbody>
+	    						<tr>
+	    							<td>2001</td>
+	    							<td>19/05/2020</td>
+	    							<td>Order 1</td>
+	    							<td>$ 55,00</td>
+	    							<td style="color: green;">Closed</td>
+	    						</tr>
+	    						<tr>
+	    							<td>2002</td>
+	    							<td>13/02/2021</td>
+	    							<td>Order 2</td>
+	    							<td>$ 66,00</td>
+	    							<td style="color: red;">Active</td>
+	    						</tr>
+	    					</tbody>
+	    				</table>
+    				</div>
+    				<div>
+						<div class="col ">
+							<button type="button" class="btn-change btn btn-warning" style="margin-left: 300px;">Close</button>
+						</div>    					
+    				</div>	
+  				</div> <!-- End Historial Window -->			
+				<!-- Start Help Window -->
+				<div class="HelpWdw " id="wdwHelp" style="display: none;">
+					<div class="ayuda">
+						<h2> AYUDA (spanish) </h2>
+						<br>
+						<p> 
+							Esta aplicacion intenta administrar compras de usuario a modo de prueba de diseño y arquiectura de aplicaciones web.
+							<br>
+							Para el desarrollo de esta aplicacion se utilizo SpringBoot con Hibernate implementado con un modelo MVC utilizando
+							tecnicas de CRUD y APIRest.
+							<br>
+							<br>
+							Esta aplicacion ha sido desarrollada enteramente por Sebastian Liotta (sliottadev@gmail.com). 
+							Para mas informacion pulse el boton de Curriculum en el menu lateral.
+						</p>
+						<h2>Como Probar la Aplicacion</h2>
+						<h4>1. Creacion de Productos</h4>
+						<p>
+							En la Pagina de inicio de la aplicacion encontrará un menú superior donde pordrá ver un boton de "Administracion de Productos".
+							<br>
+							En este espacio Usted podrá dar de alta productos al igual que modificarlos o eliminarlos.
+						</p>
+						<h4>2. Creacion de Usuario</h4>
+						<p>
+							Luego de haber creado una lista de productos, Se necesitará dar de alta al usuario. En la página de Login, Usted podrá dar de alta su usuario 				haciendo click en el vinculo "Sing Up" luego de completar los datos esta listo para ingresar a su Dashboard.
+						</p>
+						<h4>3. Uso del Dashboard</h4>
+						<p>
+							El Dashboard esta compuesto por un menu lateral y un contenedor de central. A continuación de describirá las operaciones disponibles en cada Item de menú.
+							<ul>
+								<li><h5>Profile</h5></li>
+									<p> Esta opcion le permitirá administrar la informacion referente a su usuario (nombre, imagen, mail, contraseña, etc).</p>
+								<li><h5>New Order</h5></li>
+									<p> Este apartado esta destinado a la creacion de nuevos pedidos que se convertirán en nuevos carros de compra (Orders). 
+									Desde aqui Usted seleccionará los articulos que desea agregar a su nueva orden y finalizará su pedido haciendo click en "Create Order".</p>
+								<li><h5>Order</h5></li>
+									<p> Este item de Menú le permitirá hacer un seguimiento de sus ordenes activas pudiendo filtrar, tambien, por número de orden o algun producto en particular.</p>
+								<li><h5>Historial</h5></li>
+									<p> Desde aqui Usted podrá acceder a un historial completo de sus ordenes para poder ver cuales estan activas y cuales han sido finalizadas a dia de hoy. </p>
+								<li><h5>Help</h5></li>
+									<p> Esta opcion... bueno, Usted ya conoce esta opcion.</p>
+								<li><h5>Curriculum Vitae</h5></li>
+									<p> Esta Opcion le Permite dar un vistazo al curriculum vitae del desarrollador casi como tambien explorar su cartera de trabajo subido a GitHub y hasta enviarle un correo electronico para realizar consultas. </p>
+							</ul>
+						</p>
+						</div>
+				</div> <!-- End Help Window -->			
+				<!-- Start CV Window -->
+				<div class="CVWdw " id="wdwCV" style="display: none;">
+					<div class="ParsonalData container">
+						<div class="row">
+							<div class="col-md-3">
+								<img class="cvImage" src="user.png">
+							</div>
+							<div class="col cvData">
+								<h2> CURRICULUM VITAE</h2>
+								<h3>Sebastián José Liotta </h3> 
+								<h5>     Desarrollador</h5>
+							</div>
+						</div>
+						<div class="row">
+							
+						</div>
+					</div>							
+				</div> <!-- End CV Window -->			
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

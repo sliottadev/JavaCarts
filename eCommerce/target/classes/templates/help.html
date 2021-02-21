@@ -1,0 +1,80 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Productos</title>
+	<meta charset="utf-8">
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="static/css/help.css" th:href="@{/css/help.css}">
+</head>
+<body>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+	<h6 style="position: absolute; left: 1px; top: 1px;">Created by Sebastian Liotta</h6>		
+	<div class="container" style="position: relative;">
+		<div class="d-flex justify-content-center h-100">
+			<div class="mainContainer container">
+				<h1>Help</h1>
+				<br>
+				<div class="text-container">
+					<p> 
+						Esta aplicacion intenta administrar compras de usuario a modo de prueba de diseño y arquiectura de aplicaciones web.
+						<br>
+						Para el desarrollo de esta aplicacion se utilizo SpringBoot con Hibernate implementado con un modelo MVC utilizando
+						tecnicas de CRUD y APIRest.
+						<br>
+						<br>
+						Esta aplicacion ha sido desarrollada enteramente por Sebastian Liotta (sliottadev@gmail.com). 
+						Para mas informacion pulse el boton de Curriculum en el menu lateral.
+					</p>
+					<h2>Como Probar la Aplicacion</h2>
+					<h4>1. Creacion de Productos</h4>
+					<p>
+						En la Pagina de inicio de la aplicacion encontrará un menú superior donde pordrá ver un boton de "Administracion de Productos".
+						<br>
+						En este espacio Usted podrá dar de alta productos al igual que modificarlos o eliminarlos.
+					</p>
+					<h4>2. Creacion de Usuario</h4>
+					<p>
+						Luego de haber creado una lista de productos, Se necesitará dar de alta al usuario. En la página de Login, Usted podrá dar de alta su usuario 				haciendo click en el vinculo "Sing Up" luego de completar los datos esta listo para ingresar a su Dashboard.
+					</p>
+					<h4>3. Uso del Dashboard</h4>
+					<p>
+						El Dashboard esta compuesto por un menu lateral y un contenedor de central. A continuación de describirá las operaciones disponibles en cada Item de menú.
+						<ul>
+							<li><h5>Profile</h5></li>
+								<p> Esta opcion le permitirá administrar la informacion referente a su usuario (nombre, imagen, mail, contraseña, etc).</p>
+							<li><h5>New Order</h5></li>
+								<p> Este apartado esta destinado a la creacion de nuevos pedidos que se convertirán en nuevos carros de compra (Orders). 
+								Desde aqui Usted seleccionará los articulos que desea agregar a su nueva orden y finalizará su pedido haciendo click en "Create Order".</p>
+							<li><h5>Order</h5></li>
+								<p> Este item de Menú le permitirá hacer un seguimiento de sus ordenes activas pudiendo filtrar, tambien, por número de orden o algun producto en particular.</p>
+							<li><h5>Historial</h5></li>
+								<p> Desde aqui Usted podrá acceder a un historial completo de sus ordenes para poder ver cuales estan activas y cuales han sido finalizadas a dia de hoy. </p>
+							<li><h5>Help</h5></li>
+								<p> En este apartado usted encontrará esta misma guia que le servirá de ayuda</p>
+							<li><h5>Curriculum Vitae</h5></li>
+								<p> Esta Opcion le Permite dar un vistazo al curriculum vitae del desarrollador casi como tambien explorar su cartera de trabajo subido a GitHub y hasta enviarle un correo electronico para realizar consultas. </p>
+						</ul>
+					</p>
+				</div>
+				<br>
+   				<div>
+					<div class="d-grid gap-2 d-md-flex justify-content-md-end col-11 mx-auto">
+						<button type="button btn-foot" class="btn-change btn btn-warning">Back Home</button>
+					</div>    					
+   				</div>				
+			</div>		
+		</div>
+	</div>
+</body>
+</html>

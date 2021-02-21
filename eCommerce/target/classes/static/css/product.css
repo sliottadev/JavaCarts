@@ -1,0 +1,50 @@
+
+html,body{
+	background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 100%;
+	font-family: 'Numans', sans-serif;
+}
+
+.mainContainer{
+width: 1300px;
+height: 800px;
+margin-top: auto;
+margin-bottom: auto;
+background-color: rgba(0,0,0,0.5) !important;
+}
+
+h1{
+	color: white;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+td, th{
+	color: white;
+	vertical-align: middle;
+}
+
+.tableContainer{
+	width: 1250px;
+	margin-left: 12px;
+}
+
+.headTable{
+	color: black;
+}
+table tbody tr td, table tbody tr th{
+    background-color: rgba(255,255,255, 0.3) !important;
+}
+
+.my-custom-scrollbar {
+position: relative;
+height: 650px;
+overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+display: block;
+}
+
