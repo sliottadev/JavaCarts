@@ -24,7 +24,7 @@ public class HomeController {
 	
 	@Autowired
 	IProductService productService;
-	
+	//Comentario prueba
 	@GetMapping(value = "/home")
 	public String Home (Locale locate, Model model) {
 		if (model.getAttribute("msj") == null) {
